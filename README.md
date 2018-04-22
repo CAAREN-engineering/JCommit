@@ -1,6 +1,6 @@
 various SLAX scripts for Junos
 
-### requireIFdescriptions.slax
+### GTSM.slax
 
 A commit script that will look for "apply-macro GTSM" in a BGP group and take the following action:
  * add multi-hop ttl 255 to the BGP group
