@@ -26,19 +26,6 @@ ns jcs = "http://xml.juniper.net/junos/commit-scripts/1.0";
 
 import "../import/junos.xsl";
 
-template emit-warning($message) {
-    <xnm:warning> {
-        call jcs:edit-path();
-            <message> $message;
-    }
-}
-
-template emit-error($message) {
-    <xnm:error> {
-        call jcs:edit-path();
-            <message> $message;
-    }
-}
 
 
 match configuration {
