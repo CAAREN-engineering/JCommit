@@ -2,13 +2,14 @@ various commit SLAX scripts for Junos
 
 ### GTSM.slax
 
-A commit script that will look for "apply-macro GTSM" in a BGP group and take the following action:
+A commit script that will look for ```apply-macro GTSM``` in a BGP group and take the following action:
  * add multi-hop ttl 255 to the BGP group
  * add the neighbor address to a family-specific prefix list (v4 or v6)
 
 This script assumes that there is a filter applied to the loopback that uses these prefixes lists to perform the filtering
 For IPv6, this term should be in a family inet6 filter applied to the loopback:
-```filter protect-RE_v6 {
+```
+filter protect-RE_v6 {
     term GTSM {
         from {
             prefix-list {
