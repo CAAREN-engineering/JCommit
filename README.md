@@ -8,7 +8,7 @@ A commit script that will look for "apply-macro GTSM" in a BGP group and take th
 
 This script assumes that there is a filter applied to the loopback that uses these prefixes lists to perform the filtering
 For IPv6, this term should be in a family inet6 filter applied to the loopback:
-filter protect-RE_v6 {
+```filter protect-RE_v6 {
     term GTSM {
         from {
             prefix-list {
@@ -39,7 +39,7 @@ family inet {
             }
         }
     }
-}
+}```
 
 ### requireIFdescriptions.slax
 
