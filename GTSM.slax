@@ -7,7 +7,7 @@ which is used in a *pre-existing* filter applied to the loopback.
 
 See README.md for example filter term syntax.
 
-There is an existing script that is subtely different, and in some ways more elegant
+There is an existing script in the Juniper Scriptorium:
 https://github.com/Juniper/junoscriptorium/blob/master/library/juniper/commit/protocols/ttl-security/ttl
 -security.slax
 
