@@ -1,13 +1,13 @@
-various commit SLAX scripts for Junos
+## various commit SLAX scripts for Junos
 
 ### GTSM.slax
 
 A commit script that will look for ```apply-macro GTSM``` in a BGP group and take the following action:
- * add multi-hop ttl 255 to the BGP group
+ * add ```multi-hop ttl``` 255 to the BGP group
  * add the neighbor address to a family-specific prefix list (v4 or v6)
 
-This script assumes that there is a filter applied to the loopback that uses these prefixes lists to perform the filtering
-For IPv6, this term should be in a family inet6 filter applied to the loopback:
+This script assumes that there is a filter applied to the loopback that uses these prefixes lists to perform the filtering.
+For example:
 ```
 filter protect-RE_v6 {
     term GTSM {
@@ -51,7 +51,8 @@ If the interface has multiple units, each unit requires a description (the logic
 
 ### requireBGPpolicy.slax
 
-A commit script to check all external BGP peers- if no policy, apply default DENY
+A commit script to check all external BGP peers- if no policy, apply default DENY policy.  This implements the behavior
+described in [RFC 8212](https://tools.ietf.org/html/rfc8212 "Default External BGP (EBGP) Route Propagation Behavior without Policies")
 
 requires `po_DEFAULT-BGP-POLICY-DENY-ALL` to be configured
 ```
