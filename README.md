@@ -47,7 +47,7 @@ family inet {
 
 ### requireIFdescriptions.slax
 
-A commit script that will cause commit to fail unless eac PHY inteface that exists in the configuration has a description
+A commit script that will cause commit to fail unless each PHY interface that exists in the configuration has a description
 
 If the interface has multiple units, each unit requires a description (the logic here is that a with a single unit, the description of the parent PHY will suffice)
 
@@ -55,7 +55,7 @@ If the interface has multiple units, each unit requires a description (the logic
 ### requireBGPpolicy.slax
 
 A commit script to check all external BGP peers- if no policy, apply default DENY policy.  This implements the behavior
-described in [RFC 8212](https://tools.ietf.org/html/rfc8212 "Default External BGP (EBGP) Route Propagation Behavior without Policies")
+described in [RFC 8212.](https://tools.ietf.org/html/rfc8212 "Default External BGP (EBGP) Route Propagation Behavior without Policies")
 
 requires `po_DEFAULT-BGP-POLICY-DENY-ALL` to be configured
 ```
@@ -63,19 +63,5 @@ policy-statement po_DEFAULT-BGP-POLICY-DENY-ALL {
     term reject-everything {
         then reject;
     }
-}
-```
-
-
-script files go in `/var/db/scripts/commit` and are configured under [edit system scripts commit]
-```
-system{
-    scripts {
-        commit {
-            file GTSM.slax
-            file requireIFdescriptions.slax;
-            file requireBGPpolicy.slax;
-		}
-	}
 }
 ```
