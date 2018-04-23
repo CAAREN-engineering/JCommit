@@ -33,49 +33,49 @@ match configuration {
     for-each (protocols/bgp/group) {
         var $group = ./name;
         if (apply-macro/name == "GTSM") {
-            for-each (neighbor) {
-                call jcs:emit-change($dot=$configroot) {
-                    with $content = {
-                        <protocols> {
-                            <bgp> {
-                                <group> {
-                                    <name> $group;
-                                        <multihop> {
-                                            <ttl> 255;
+            call jcs:emit-change($dot=$configroot) {
+                with $content = {
+                    <protocols> {
+                        <bgp> {
+                            <group> {
+                                <name> $group;
+                                    <multihop> {
+                                        <ttl> 255;
                                 }
                             }
                         }
                     }
                 }
-              }
-              if (contains(., '.')) {
-              call jcs:emit-change($dot=$configroot) {
-                  with $content = {
-                      <policy-options> {
-                          <prefix-list> {
-                              <name>"pf_GTSM_neighbors_v4";
-                                  <prefix-list-item> {
-                                      <name> .;
-                                      }
-                                  }
-                              }
-                          }
-                  }
-              }
-              if (contains(., ':')) {
-              call jcs:emit-change($dot=$configroot) {
-                  with $content = {
-                      <policy-options> {
-                          <prefix-list> {
-                              <name>"pf_GTSM_neighbors_v6";
-                                  <prefix-list-item> {
-                                      <name> .;
-                                  }
-                              }
-                          }
-                      }
-                  }
-              }
+            }
+            for-each (neighbor) {
+                if (contains(., '.')) {
+                    call jcs:emit-change($dot=$configroot) {
+                        with $content = {
+                        <policy-options> {
+                            <prefix-list> {
+                                <name>"pf_GTSM_neighbors_v4";
+                                    <prefix-list-item> {
+                                        <name> .;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                if (contains(., ':')) {
+                    call jcs:emit-change($dot=$configroot) {
+                    with $content = {
+                        <policy-options> {
+                            <prefix-list> {
+                                <name>"pf_GTSM_neighbors_v6";
+                                    <prefix-list-item> {
+                                        <name> .;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }
