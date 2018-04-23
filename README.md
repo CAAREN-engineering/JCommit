@@ -44,6 +44,8 @@ family inet {
     }
 }
 ```
+These terms can be added to the loopback filter before any peers are enabled for GTSM.  In that case, the prefix list
+needs to exist, even if it is empty.
 
 ### requireIFdescriptions.slax
 
