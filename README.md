@@ -9,21 +9,23 @@ A commit script that will look for ```apply-macro GTSM``` in a BGP group and tak
 This script assumes that there is a filter applied to the loopback that uses these prefixes lists to perform the filtering.
 For example:
 ```
-filter protect-RE_v6 {
-    term GTSM {
-        from {
-            prefix-list {
-                pf_GTSM_neighbors_v6;
+family inet6 {
+    filter protect-RE_v6 {
+        term GTSM {
+            from {
+                prefix-list {
+                    pf_GTSM_neighbors_v6;
+                }
+                next-header tcp;
+                port bgp;
+                hop-limit-except 254;
             }
-            next-header tcp;
-            port bgp;
-            hop-limit-except 254;
+            then discard;
         }
-        then discard;
     }
 }
 
-For IPv4:
+
 family inet {
     filter protect-RE_v4 {
         term GTSM {
@@ -40,7 +42,8 @@ family inet {
             }
         }
     }
-}```
+}
+```
 
 ### requireIFdescriptions.slax
 
