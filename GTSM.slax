@@ -5,16 +5,16 @@ peers are idenitified by the statement 'apply-macro GTSM' in the bgp group stanz
 It works by placing any neighbor addresses in a family-specific prefix list
 which is used in a *pre-existing* filter applied to the loopback.
 
- ------------------------------------------------- put filter term here --------------------------------
- --------------------------------------------------------------------------------------------------------
+See README.md for example filter term syntax.
+
 There is an existing script that is subtely different, and in some ways more elegant
 https://github.com/Juniper/junoscriptorium/blob/master/library/juniper/commit/protocols/ttl-security/ttl
 -security.slax
 
 Key differences:
-This scripts supports both IPv4 and IPv6 by  using family specific prefix-lists that are used in firewall filters.
-The script on github puts v4 addresses directly into a firewall filter term.
-The script on github detects the state of lo0 filtering and will add a new filter or modify a filter-list as appropriate
+This scripts supports both IPv4 and IPv6 by using family specific prefix-lists that are used in firewall filters.
+The original script puts v4 addresses directly into a firewall filter term.
+The original script detects the state of lo0 filtering and will add a new filter or modify a filter-list as appropriate
 This script assumes that a lo0 filter exists with a term to handle the TTL filtering
 This script makes permenant changes; the other, transient changes
 */
@@ -60,7 +60,6 @@ match configuration {
                         }
                     }
                 }
-              with $message = "Added multihop TTL=255 to " _ name;
               }
               if (contains(., '.')) {
               call jcs:emit-change($dot=$configroot) {
@@ -74,7 +73,6 @@ match configuration {
                                   }
                               }
                           }
-                  with $message = "Neighbor " _ . _  "being added to GTSM_v4 list";
                   }
               }
               if (contains(., ':')) {
@@ -89,7 +87,6 @@ match configuration {
                               }
                           }
                       }
-                  with $message = "Neighbor " _ . _  "being added to GTSM_v4 list";
                   }
               }
             }
