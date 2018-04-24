@@ -18,7 +18,7 @@ family inet6 {
                 }
                 next-header tcp;
                 port bgp;
-                hop-limit-except 254;
+                hop-limit-except 255;
             }
             then discard;
         }
@@ -34,7 +34,7 @@ family inet {
                     pf_GTSM_neighbors_v4;
                 }
                 protocol tcp;
-                ttl-except 254;
+                ttl-except 255;
                 port bgp;
             }
             then {
