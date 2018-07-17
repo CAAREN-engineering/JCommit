@@ -3,10 +3,10 @@
 ### GTSM.slax
 
 A commit script that will look for ```apply-macro GTSM``` in a BGP group and take the following action:
- * add ```multi-hop ttl``` 255 to the BGP group
+ * add ```multi-hop ttl 255``` to the BGP group
  * add the neighbor address to a family-specific prefix list (v4 or v6)
 
-This script assumes that there is a filter applied to the loopback that uses these prefixes lists to perform the filtering.
+This script assumes that there is a filter applied to the loopback that uses these prefixes-lists to perform the filtering.
 For example:
 ```
 family inet6 {
@@ -44,7 +44,7 @@ family inet {
     }
 }
 ```
-These terms can be added to the loopback filter before any peers are enabled for GTSM.  In that case, the prefix list
+These terms can be added to the loopback filter before any peers are enabled for GTSM.  In that case, the prefix-list
 needs to exist, even if it is empty.
 
 ### requireIFdescriptions.slax
