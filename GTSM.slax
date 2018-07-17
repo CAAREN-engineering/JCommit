@@ -2,7 +2,7 @@ version 1.1;
 /* created 03APR2018 akg
 this commit script implments GTMS (RFC 5082) for select BGP peers
 peers are idenitified by the statement 'apply-macro GTSM' in the bgp group stanza
-It works by placing any neighbor addresses in a family-specific prefix list
+It works by placing any neighbor addresses in the stanza into a family-specific prefix list
 which is used in a *pre-existing* filter applied to the loopback.
 
 See README.md for example filter term syntax.
