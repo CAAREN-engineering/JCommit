@@ -7,6 +7,8 @@ which is used in a *pre-existing* filter applied to the loopback.
 
 See README.md for example filter term syntax.
 
+Currently, this script does NOT look inside routing-instances.
+
 There is an existing script in the Juniper Scriptorium:
 https://github.com/Juniper/junoscriptorium/blob/master/library/juniper/commit/protocols/ttl-security/ttl
 -security.slax
